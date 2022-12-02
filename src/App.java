@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class App extends Application {
@@ -18,7 +19,8 @@ public class App extends Application {
             root = appLoader.load();
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
-            primaryStage.setTitle("世界杯赛程信息");
+            primaryStage.getIcons().add(new Image("./assets/icons/window.png"));
+            primaryStage.setTitle("世界杯赛程信息 - 爬虫");
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();

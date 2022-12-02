@@ -25,14 +25,14 @@ public class WorldCupCrawler extends BreadthCrawler {
     /* start pages */
     int start_day = 21;
     int start_month = 11;
-    // int end_day = 18;
-    // int end_month = 12;
+    int end_day = 18;
+    int end_month = 12;
     int day = start_day;
     int month = start_month;
     int today = 2;
     int this_month = 12;
 
-    while(month <= this_month || day <= today) {
+    while(month <= end_month || day <= end_day) {
       String url = "https://tiyu.baidu.com/match/%E4%B8%96%E7%95%8C%E6%9D%AF/date_time/2022-"+ month + "-"+ day +"/tab/%E8%B5%9B%E7%A8%8B/from/baidu_aladdin";
       this.addSeed(url);
       day++;
