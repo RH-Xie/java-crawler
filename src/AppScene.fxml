@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="328.0" prefWidth="465.0" style="-fx-background-color: #2F435B;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AppSceneController">
+   <children>
+      <Label fx:id="startBtn" layoutX="32.0" layoutY="154.0" onMouseClicked="#onCrawlClick" text="爬取" textFill="WHITE">
+         <graphic>
+            <ImageView fitHeight="53.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assets/icons/crawl.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Label>
+      <ImageView fitHeight="133.0" fitWidth="257.0" layoutX="101.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/icons/World-Cup-logo-2022.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="36.0" layoutY="238.0" text="退出" textFill="WHITE">
+         <graphic>
+            <ImageView fx:id="closeBtn" fitHeight="46.0" fitWidth="54.0" onMouseClicked="#onCloseClick" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assets/icons/cancel.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Label>
+      <ChoiceBox fx:id="dateChooseBox" layoutX="192.0" layoutY="116.0" prefHeight="11.0" prefWidth="235.0" />
+      <VBox layoutX="195.0" layoutY="158.0" prefHeight="155.0" prefWidth="235.0" />
+   </children>
+</AnchorPane>

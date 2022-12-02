@@ -12,7 +12,7 @@ import cn.edu.hfut.dmic.webcollector.plugin.rocks.BreadthCrawler;
  *
  * @author hu
  */
-public class DemoAnnotatedAutoNewsCrawler extends BreadthCrawler {
+public class WorldCupCrawler extends BreadthCrawler {
   private HashMap<Integer, String> content = new HashMap<Integer, String>();
   /**
    * @param crawlPath crawlPath is the path of the directory which maintains
@@ -20,7 +20,7 @@ public class DemoAnnotatedAutoNewsCrawler extends BreadthCrawler {
    * @param autoParse if autoParse is true,BreadthCrawler will auto extract
    *                  links which match regex rules from pag
    */
-  public DemoAnnotatedAutoNewsCrawler(String crawlPath, boolean autoParse) {
+  public WorldCupCrawler(String crawlPath, boolean autoParse) {
     super(crawlPath, autoParse);
     /* start pages */
     int start_day = 21;
@@ -54,7 +54,7 @@ public class DemoAnnotatedAutoNewsCrawler extends BreadthCrawler {
   }
 
   @MatchUrl(urlRegex = "https://tiyu.baidu.com/match/%E4%B8%96%E7%95%8C%E6%9D%AF/date_time/.*")
-  public void visitNews(Page page, CrawlDatums next) {
+  public void visitWorldCup(Page page, CrawlDatums next) {
     /* extract title and content of news by css selector */
     Element today_games = page.select("div.wa-match-schedule-list-wrapper").first();
     Elements divGroups = today_games.select("div.wa-match-schedule-list-item");
@@ -93,7 +93,7 @@ public class DemoAnnotatedAutoNewsCrawler extends BreadthCrawler {
   }
 
   public static void main(String[] args) throws Exception {
-    DemoAnnotatedAutoNewsCrawler crawler = new DemoAnnotatedAutoNewsCrawler("crawl", true);
+    WorldCupCrawler crawler = new WorldCupCrawler("crawl", true);
     /* start crawl with depth of 4 */
     crawler.start(1);
     Utils.csvWriter("./data.csv", crawler.getContent());
