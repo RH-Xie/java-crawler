@@ -156,7 +156,6 @@ public class DemoAnnotatedAutoNewsCrawler extends BreadthCrawler {
   public static void main(String[] args) throws Exception {
     DemoAnnotatedAutoNewsCrawler crawler = new DemoAnnotatedAutoNewsCrawler("crawl", true);
     /* start crawl with depth of 4 */
-    crawler.start(2);
+    crawler.start(1);
   }
-
 }
