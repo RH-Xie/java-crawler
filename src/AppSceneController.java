@@ -34,6 +34,9 @@ public class AppSceneController {
     private Label startBtn;
 
     @FXML
+    private Label openCSVBtn;
+
+    @FXML
     private GridPane gridPane;
 
     @FXML
@@ -50,6 +53,11 @@ public class AppSceneController {
     @FXML
     void onTipClick(MouseEvent event) {
       onCrawlClick(event);
+    }
+
+    @FXML
+    void onOpenCSV(MouseEvent event) {
+      Utils.openFile("./data.csv");
     }
 
     @FXML
@@ -75,6 +83,7 @@ public class AppSceneController {
         }
         this.progressBar.setVisible(false);
         this.tipLabel.setVisible(false);
+        this.openCSVBtn.setVisible(true);
         System.out.println("完成！");
         // 更新界面
         Platform.runLater(() -> {

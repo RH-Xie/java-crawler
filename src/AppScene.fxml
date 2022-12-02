@@ -13,11 +13,11 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="328.0" prefWidth="465.0" style="-fx-background-color: #2F435B;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AppSceneController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="328.0" prefWidth="540.0" style="-fx-background-color: #2F435B;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AppSceneController">
    <children>
       <Label fx:id="startBtn" layoutX="32.0" layoutY="154.0" onMouseClicked="#onCrawlClick" text="爬取" textFill="WHITE">
          <graphic>
-            <ImageView fitHeight="53.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@assets/icons/crawl.png" />
                </image>
@@ -27,14 +27,26 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Label>
-      <ImageView fitHeight="133.0" fitWidth="257.0" layoutX="101.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="133.0" fitWidth="257.0" layoutX="157.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@assets/icons/World-Cup-logo-2022.png" />
          </image>
       </ImageView>
-      <Label layoutX="36.0" layoutY="238.0" onMouseClicked="#onCloseClick" text="退出" textFill="WHITE">
+      <Label fx:id="openCSVBtn" layoutX="33.0" layoutY="256.0" onMouseClicked="#onOpenCSV" text="打开CSV" textFill="WHITE" visible="false">
          <graphic>
-            <ImageView fx:id="closeBtn" fitHeight="46.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="41.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assets/icons/open.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Label>
+      <Label layoutX="34.0" layoutY="208.0" onMouseClicked="#onCloseClick" text="退出" textFill="WHITE">
+         <graphic>
+            <ImageView fx:id="closeBtn" fitHeight="39.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@assets/icons/cancel.png" />
                </image>
@@ -44,8 +56,8 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Label>
-      <ChoiceBox fx:id="dateChooseBox" layoutX="120.0" layoutY="116.0" prefHeight="23.0" prefWidth="307.0" visible="false" />
-      <GridPane fx:id="gridPane" gridLinesVisible="true" layoutX="120.0" layoutY="154.0" prefHeight="147.0" prefWidth="307.0" style="-fx-background-color: #8C98AC;" visible="false">
+      <ChoiceBox fx:id="dateChooseBox" layoutX="187.0" layoutY="116.0" prefHeight="23.0" prefWidth="307.0" visible="false" />
+      <GridPane fx:id="gridPane" gridLinesVisible="true" layoutX="187.0" layoutY="154.0" prefHeight="147.0" prefWidth="307.0" style="-fx-background-color: #8C98AC;" visible="false">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="134.33331298828125" minWidth="10.0" prefWidth="97.33331298828125" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="134.66666666666669" minWidth="10.0" prefWidth="108.99995930989583" />

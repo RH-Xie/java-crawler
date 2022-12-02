@@ -61,6 +61,14 @@ public class Utils {
     return true;
   }
 
+  public static void openFile(String path) {
+    try {
+      Runtime.getRuntime().exec("cmd /c start " + path);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
   public static HashMap<Integer, String> sortByKey(HashMap<Integer, String> messageList) {
     TreeMap<Integer, String> treeMap = new TreeMap<Integer, String>(messageList);
     HashMap<Integer, String> result = new HashMap<Integer, String>();
