@@ -75,7 +75,7 @@ public class AppSceneController {
           try {
             Thread.sleep(30);
             if(progressBar.getProgress() < 0.93) {
-              progressBar.setProgress(progressBar.getProgress() + 0.010);
+              progressBar.setProgress(progressBar.getProgress() + 0.007);
             }
           } catch (InterruptedException e) {
             e.printStackTrace();
