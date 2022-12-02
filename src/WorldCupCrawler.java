@@ -92,10 +92,10 @@ public class WorldCupCrawler extends BreadthCrawler {
     return content;
   }
 
-  public static void main(String[] args) throws Exception {
-    WorldCupCrawler crawler = new WorldCupCrawler("crawl", true);
-    /* start crawl with depth of 4 */
-    crawler.start(1);
-    Utils.csvWriter("./data.csv", crawler.getContent());
-  }
+  // public static void main(String[] args) throws Exception {
+  //   WorldCupCrawler crawler = new WorldCupCrawler("crawl", true);
+  //   /* start crawl with depth of 4 */
+  //   crawler.start(1);
+  //   Utils.csvWriter("./data.csv", crawler.getContent());
+  // }
 }

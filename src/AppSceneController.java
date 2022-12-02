@@ -5,7 +5,6 @@ import java.util.concurrent.Executors;
 
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.ChoiceBox;
@@ -15,7 +14,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
@@ -69,7 +67,7 @@ public class AppSceneController {
           try {
             Thread.sleep(30);
             if(progressBar.getProgress() < 0.93) {
-              progressBar.setProgress(progressBar.getProgress() + 0.015);
+              progressBar.setProgress(progressBar.getProgress() + 0.010);
             }
           } catch (InterruptedException e) {
             e.printStackTrace();
