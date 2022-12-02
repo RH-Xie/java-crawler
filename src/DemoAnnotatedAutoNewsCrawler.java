@@ -1,24 +1,7 @@
-
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.security.cert.X509Certificate;
-import java.util.Calendar;
-import java.util.Date;
-
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
+import java.util.HashMap;
 
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
-import com.alibaba.fastjson.JSONObject;
 
 import cn.edu.hfut.dmic.webcollector.model.CrawlDatums;
 import cn.edu.hfut.dmic.webcollector.model.Page;
@@ -30,6 +13,7 @@ import cn.edu.hfut.dmic.webcollector.plugin.rocks.BreadthCrawler;
  * @author hu
  */
 public class DemoAnnotatedAutoNewsCrawler extends BreadthCrawler {
+  private HashMap<Integer, String> content = new HashMap<Integer, String>();
   /**
    * @param crawlPath crawlPath is the path of the directory which maintains
    *                  information of this crawler
@@ -41,8 +25,8 @@ public class DemoAnnotatedAutoNewsCrawler extends BreadthCrawler {
     /* start pages */
     int start_day = 21;
     int start_month = 11;
-    int end_day = 18;
-    int end_month = 12;
+    // int end_day = 18;
+    // int end_month = 12;
     int day = start_day;
     int month = start_month;
     int today = 2;
@@ -76,76 +60,26 @@ public class DemoAnnotatedAutoNewsCrawler extends BreadthCrawler {
     Elements divGroups = today_games.select("div.wa-match-schedule-list-item");
     Element date = today_games.select("div.date").first();
     System.out.println();
+    String newLine = date.text();
     System.out.println("==========" + date.text() + " 赛程 ==========");
     for (Element divGroup : divGroups) {
       String groupClass = divGroup.select("p.c-line-clamp").text();
       Elements divTeams = divGroup.select("div.team-row");
       System.out.println();
       System.out.println(groupClass);
+      newLine += ", " + groupClass;
       String teamName = divTeams.get(0).select("div.team-row-name > span.c-line-clamp1").text();
       String teamScore = divTeams.get(0).select("div.team-row-score > span").text();
       String display = teamName + " " + teamScore;
       teamName = divTeams.get(1).select("div.team-row-name > span.c-line-clamp1").text();
       teamScore = divTeams.get(1).select("div.team-row-score > span").text();
       display += " vs " + teamScore + " " + teamName;
-      // System.out.println(groupClass + " " + teamName + " " + teamScore);
-      // System.out.println("输出：");
-      // System.out.println(divGroup);
+      newLine += "|" + display;
       System.out.println(display);
     }
-    // while(day < end_day || month < end_month) {
-      // try {
-      //   trustAllHosts();
-      //   URL url = new URL("https://tiyu.baidu.com/api/match/世界杯/live/date/2022-11-30/direction/forward?from=self");
-      //   HttpsURLConnection conn = (HttpsURLConnection)url.openConnection();
-      //   // conn.setHostnameVerifier(DO_NOT_VERIFY);
-      //   conn.setRequestMethod("GET");
-      //   conn.setRequestProperty("user-agent", "	Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:107.0) Gecko/20100101 Firefox/107.0");
-			//   conn.setRequestProperty("Content-type", "application/json;charset=UTF-8");
-      //   conn.setRequestProperty("accept-encoding", "gzip, deflate, br");
-      //   conn.setRequestProperty("accept-language", "zh-CN,zh;q=0.9");
-      //   conn.setRequestProperty("Connection", "keep-alive");
-      //   conn.setRequestProperty("host", "tiyu.baidu.com");
-      //   conn.setRequestProperty("Sec-Fetch-Dest", "document");
-      //   conn.setRequestProperty("Sec-Fetch-Mode", "navigate");
-      //   conn.setRequestProperty("Sec-Fetch-Site", "none");
-      //   conn.setRequestProperty("Sec-Fetch-User", "?1");
-      //   conn.setRequestProperty("Upgrade-Insecure-Requests", "1");
-      //   conn.connect();
-      //   if (conn.getResponseCode() != 200) {
-      //     throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
-      //   } 
-        
-      //   InputStream inputStream = conn.getInputStream();
-      //   InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "utf-8");
-      //   BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-      //   String str = null;
-      //   StringBuffer buffer = new StringBuffer();
-      //   while ((str = bufferedReader.readLine()) != null) {
-      //     buffer.append(str);
-      // }
-      //   System.out.println("响应：" + JSONObject.parseObject(buffer.toString()));
-      // } catch (MalformedURLException e) {
-      //   e.printStackTrace();
-      // } catch (Exception e) {
-      //   e.printStackTrace();
-      // }
-    // }
-
-    // String title = page.select("h1[class=lh-condensed]").first().text();
-    // String content = page.selectText("div.content.markdown-body");
-
-    // System.out.println("URL:\n" + page.url());
-    // System.out.println("title:\n" + title);
-    // System.out.println("content:\n" + content);
-
-    /* If you want to add urls to crawl,add them to nextLink */
-    /* WebCollector automatically filters links that have been fetched before */
-    /*
-     * If autoParse is true and the link you add to nextLinks does not match the
-     * regex rules,the link will also been filtered.
-     */
-    // next.add("http://xxxxxx.com");
+    String[] stringKey = date.text().substring(0, 5).split("-");
+    int key = Integer.parseInt(stringKey[0] + stringKey[1]);
+    content.put(key ,newLine);
   }
 
   @Override
@@ -153,9 +87,15 @@ public class DemoAnnotatedAutoNewsCrawler extends BreadthCrawler {
     System.out.println("visit pages that don't match any annotation rules: " + page.url());
   }
 
+  public HashMap<Integer, String> getContent() {
+    content = Utils.sortByKey(content);
+    return content;
+  }
+
   public static void main(String[] args) throws Exception {
     DemoAnnotatedAutoNewsCrawler crawler = new DemoAnnotatedAutoNewsCrawler("crawl", true);
     /* start crawl with depth of 4 */
     crawler.start(1);
+    Utils.csvWriter("./data.csv", crawler.getContent());
   }
 }
