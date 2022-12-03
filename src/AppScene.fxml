@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="328.0" prefWidth="540.0" style="-fx-background-color: #2F435B;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AppSceneController">
    <children>
       <Label fx:id="startBtn" layoutX="32.0" layoutY="154.0" onMouseClicked="#onCrawlClick" text="爬取" textFill="WHITE">
@@ -78,6 +77,11 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+      </Label>
+      <Label fx:id="authLabel" layoutX="400.0" layoutY="294.0" text="Made by RH-Xie GZHU" textFill="WHITE">
+         <font>
+            <Font name="Consolas" size="12.0" />
+         </font>
       </Label>
    </children>
 </AnchorPane>

@@ -40,12 +40,8 @@ public class WorldCupCrawler extends BreadthCrawler {
         day = 1;
         month++;
       }
-    }    /* fetch url like "https://blog.github.com/2018-07-13-graphql-for-octokit/" */
+    }
     this.addRegex("https://tiyu.baidu.com/match/%E4%B8%96%E7%95%8C%E6%9D%AF/date_time/.*");
-    /* do not fetch jpg|png|gif */
-    // this.addRegex("-.*\\.(jpg|png|gif).*");
-    /* do not fetch url contains # */
-    // this.addRegex("-.*#.*");
 
     setThreads(50);
     getConf().setTopN(100);

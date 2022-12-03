@@ -46,6 +46,9 @@ public class AppSceneController {
     private ProgressBar progressBar;
 
     @FXML
+    private Label authLabel;
+
+    @FXML
     void onCloseClick(MouseEvent event) {
       System.exit(0);
     }
@@ -68,6 +71,7 @@ public class AppSceneController {
       cooldown = System.currentTimeMillis();
       this.tipLabel.setText("正在爬取，请稍后...");
       this.progressBar.setVisible(true);
+      this.authLabel.setVisible(false);
       CrawlTask task = new CrawlTask();
       pool.submit(task);
       Runnable renderTask = () -> {
